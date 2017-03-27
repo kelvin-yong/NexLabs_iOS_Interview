@@ -1,15 +1,15 @@
-#iOS Interview Questions for NexLabs#
+# iOS Interview Questions for NexLabs
 
-##A. Language##
+## A. Language
 
-###1. Ivars, Properties, Class Extensions and Categories###
+### 1. Ivars, Properties, Class Extensions and Categories
 With reference [NLMachine.h](https://gist.github.com/kelvin-yong/5aee4c8917715cfe2eae) and [NLMachine.m](https://gist.github.com/kelvin-yong/1e7c2bf0cda7cf7dce6c)
 
 - How many instance variables (or ivars) does the class have, both implicit and explicit? Name the ivars.
 
 - In `NLMachine.m` below, name class feature denoted by `@interface NLMachine()`. Explain the use of the feature and why some properties and ivars are declared within `@interface NLMachine()` instead of the header file.
   
-######Code######
+```objc
 	@interface NLMachine() {
     	// code omitted
     	...
@@ -19,7 +19,7 @@ With reference [NLMachine.h](https://gist.github.com/kelvin-yong/5aee4c8917715cf
 	....
 
 	@end
-
+```
 - What's is mean by nonatomic, weak? What other property attributes do you know and when would they be used?
 
 - What are the times you would use ivars over properties and vice versa?
@@ -28,31 +28,32 @@ With reference [NLMachine.h](https://gist.github.com/kelvin-yong/5aee4c8917715cf
 
 - In [code below](https://gist.github.com/kelvin-yong/8e6b5b08a82a1437c176), name class feature denoted by `@implementation NLMachine(AdvancedOps)`? What is the difference between this and the earlier feature? 
   
-######Code######
+```objc
 	@implementation NLMachine(AdvancedOps)
 	// code omitted
 	.... 
 	@end
+```
 
 - Would a property with type IBOutlet usually be strong or weak? Explain the possible reasons why each of the property below is strong or weak.
 
-######Code######
-    @property (weak, nonatomic) IBOutlet UITableView *myTable;                      // 1
-    @property (strong, nonatomic) IBOutlet UISegmentedControl *presenceControl;     // 2
-    @property (strong, nonatomic) IBOutlet UITextField *statusTextField;            // 3
-    @property (weak, nonatomic) UILabel *nameLabel;                                 // 4
-    @property (weak, nonatomic) UILabel *presenceLabel;                             // 5
+```objc
+  @property (weak, nonatomic) IBOutlet UITableView *myTable;                      // 1
+  @property (strong, nonatomic) IBOutlet UISegmentedControl *presenceControl;     // 2
+  @property (strong, nonatomic) IBOutlet UITextField *statusTextField;            // 3
+  @property (weak, nonatomic) UILabel *nameLabel;                                 // 4
+  @property (weak, nonatomic) UILabel *presenceLabel;                             // 5
+```
 
+## B. Basics
 
-##B. Basics##
-
-###1. Collections: Array and Dictionary###
+### 1. Collections: Array and Dictionary
 
 - When would you use NSArray vs NSDictionary (and their mutable counterparts)? When would you use both?
 
 - What would be the output of the following [code](https://gist.github.com/kelvin-yong/81f65bc6aa4d227751ee)? 
 
-######Code######
+```objc
     NSArray *arr = @[@"john", @"jane", @"ellen", @"rose", @"jack"];
     NSMutableArray *mutableArr = [NSMutableArray arrayWithArray:arr];
     
@@ -73,10 +74,12 @@ With reference [NLMachine.h](https://gist.github.com/kelvin-yong/5aee4c8917715cf
         }
     }
     NSLog(@"%@", mutableArr);
+```
 
 - What about this [code](https://gist.github.com/kelvin-yong/93a09bdc2ee3dbe540c2)?
 
-######Code######
+
+```objc
     NSArray *arr2 = @[[NSMutableDictionary dictionaryWithDictionary:@{@"name": @"john"}],
                       [NSMutableDictionary dictionaryWithDictionary:@{@"name": @"jane"}],
                       [NSMutableDictionary dictionaryWithDictionary:@{@"name": @"ellen"}],
@@ -90,9 +93,9 @@ With reference [NLMachine.h](https://gist.github.com/kelvin-yong/5aee4c8917715cf
         }
     }
     NSLog(@"%@", mutableArr2);
+```
 
-
-###2. NSUserDefaults and Settings.bundle###
+### 2. NSUserDefaults and Settings.bundle
 
 - Name me some commonly-used instance methods for NSUserDefaults
 
@@ -103,61 +106,61 @@ With reference [NLMachine.h](https://gist.github.com/kelvin-yong/5aee4c8917715cf
 	- `PrefHTTPSEnabled` with default value as `YES`
 	- `PrefHTTPSEnabled` with default value as `NO`
 
-###3. View and Application Lifecycle###
+### 3. View and Application Lifecycle
 
 - Discuss life cycle of a view controller
 
 - Discuss application life cycle of the app
 
 
-##C. Experience##
+## C. Experience
 
-###1. Xcode###
+### 1. Xcode
 - Share with me some Xcode / development tips and tricks.
 
 
-###2. Adhoc build###
+### 2. Adhoc build
 - You created an adhoc build for your clients to download. They couldn't install the IPA. What are the possible causes and how would you verify the cause?
 
-###3. Debugging and Instrumenting###
+### 3. Debugging and Instrumenting
 - You have a crash and Xcode stops at the file `main.c` at the line `UIApplicationMain(argc, argv, nil, NSStringFromClass([MyAppDelegate class]));`. That's not very helpful. How do you find the line in the code that made the app crash?
 
 - Your tableview scrolls real badly. Very jerky and not smooth at all. What would you do?
 
 - What would you do to determine if your app is leaking memory. Or how much memory it is using?
 
-###4. Third party libraries###
+### 4. Third party libraries
 - What are some of the third party libraries that you have used?
 
 
-##D. Specific Knowledge##
+## D. Specific Knowledge
 
-###1. Asynchronous code, NSOperations, Grand Central Dispatch ###
+### 1. Asynchronous code, NSOperations, Grand Central Dispatch
 - Why wouldn't the following [code](https://gist.github.com/kelvin-yong/e699e0ec3745347b331a) work?
 
-######Code######
-
+```objc
     [_spinner startAnimating];
     self.myImageView.image = [self downloadLargePhotoAndApplyFilter];
     [_spinner stopAnimating];
+```
 
 - How would you have written the code?
 
 - Tell me more about about GCD
 
-###2. CoreData###
+### 2. CoreData
 
 - Give me an overview of CoreData.
 
 - What are transient properties on a NSManagedObject, and under what scenarios would they be useful?
 
 
-###3. Apple Push Notification Service###
+### 3. Apple Push Notification Service
 
 - Give me an overview of APNS.
 
 
-###4. What would you do###
+### 4. What would you do
 - At 11.59pm on Saturday, you see that 3 items are listed along with their relative timestamps. At 12:01am Sunday, the relative timestamps changed. E.g. 10.17 am -> Yesterday and Yesterday -> Saturday. How would you ensure that the user is looking at the right timestamp if he stays on the the same view from 11.59 pm through 12:01 am?  
 ![alt text](time_change.png)
 
